@@ -41,6 +41,7 @@ wo_outlier
 #the outlier
 
 ggplot(cars, aes(x = cars$speed, y=cars$distance)) + geom_point() + geom_smooth(method = lm, se = F) + xlim(0, 25) + ylim(0, 120)
+ggplot(cars, aes(x = cars$speed, y=cars$distance)) + geom_point() + xlim(0, 25) + ylim(0, 120)
 ggplot(wo_outlier, aes(x = wo_outlier$speed, y = wo_outlier$distance)) + geom_point() + geom_smooth(method = lm, se = F) + xlim(0, 25) + ylim(0, 120)
 
 
@@ -53,7 +54,7 @@ set.seed(123)
 car_trainSize <- round(nrow(cars) * 0.7) 
 car_testSize <- nrow(cars) -car_trainSize
 car_training_indices <- sample(seq_len(nrow(cars)), size = car_trainSize)
-car_trainSet <- [car_training_indices,]
+car_trainSet <- cars[car_training_indices,]
 car_testSet <- cars[-car_training_indices,] 
 car_model <- lm(distance~ speed, car_trainSet)
 summary(car_model)
